@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09051a">
+  <title>Indicação Premiada | Evolua+ Profissões</title>
+  <meta name="description" content="Indique pessoas para a Evolua+ Profissões e participe da campanha Indicação Premiada.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#09051a;--card:#140b2e;--line:#38205c;--purple:#a855f7;--gold:#fbbf24;--orange:#ff7a1a;--text:#f4efff;--muted:#b9add6;--ok:#34d399;--err:#fb7185}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font:600 18px/1.5 Rajdhani,system-ui,sans-serif;background-image:radial-gradient(60% 40% at 50% -5%,rgba(168,85,247,.35),transparent),radial-gradient(40% 30% at 90% 40%,rgba(255,122,26,.12),transparent),linear-gradient(rgba(168,85,247,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.04) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px}
+    h1,h2,h3{font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:.02em;line-height:1.18}
+    .wrap{width:min(1040px,calc(100% - 32px));margin:auto}
+    section{padding:42px 0}
+    h2{font-size:clamp(22px,4vw,32px);margin:0 0 8px}
+    h2 span,.gold{color:var(--gold)}
+    .sub{color:var(--muted);margin:0 0 25px}
+    .hero{text-align:center;padding:28px 0 30px}
+    .logo{width:min(560px,92%);height:auto;filter:drop-shadow(0 0 34px rgba(168,85,247,.4))}
+    .hero h1{font-size:clamp(28px,5vw,48px);margin:12px 0}
+    .hero p{font-size:clamp(18px,3vw,23px);max-width:690px;margin:10px auto 24px;color:#e6dcfa}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;text-decoration:none;font:900 14px Orbitron,sans-serif;letter-spacing:.03em;color:#1a0b00;background:linear-gradient(180deg,#ffd75e,var(--orange));padding:14px 22px;border-radius:11px;box-shadow:0 0 0 2px #ffe08a inset,0 8px 26px rgba(255,122,26,.24);transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .btn.secondary{background:transparent;color:var(--text);box-shadow:0 0 0 1px var(--purple) inset}
+    .grid{display:grid;gap:16px}
+    .g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .card{background:linear-gradient(160deg,var(--card),#0e0822);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .step-number{font:900 32px Orbitron,sans-serif;color:var(--purple);text-shadow:0 0 15px #a855f766}
+    .card h3{font-size:16px;margin:8px 0}
+    .card p{color:var(--muted);margin:0}
+    .prize{padding:0;overflow:hidden;text-align:center}
+    .prize-image{height:205px;display:grid;place-items:center;background:radial-gradient(circle,#2a1466,#0b0620);overflow:hidden}
+    .prize-image img{width:100%;height:100%;object-fit:contain;padding:12px}
+    .prize h3{padding:14px 14px 0;margin:0}
+    .prize p{padding:7px 14px 18px;font-size:15px}
+    .empty{border:1px dashed var(--line);border-radius:14px;padding:25px;text-align:center;color:var(--muted)}
+    .form-card{background:linear-gradient(160deg,var(--card),#0e0822);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,30px)}
+    label{display:block;color:var(--muted);font-size:15px;margin:0 0 5px}
+    input[type=text],input[type=tel],input[type=email],input[type=password],textarea,select{width:100%;background:#0b0620;border:1.5px solid var(--line);color:var(--text);font:600 17px Rajdhani,sans-serif;padding:12px 13px;border-radius:9px;outline:0}
+    input:focus,textarea:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #a855f733}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .row3{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}
+    .field{margin-bottom:14px}
+    .tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+    .hint{font-size:14px;color:var(--muted)}
+    .list{max-height:320px;overflow:auto;margin-top:14px;border:1px solid var(--line);border-radius:12px}
+    .list-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line)}
+    .list-row:last-child{border:0}
+    .list-row small{display:block;color:var(--muted)}
+    .remove{background:none;border:0;color:#ff8099;font-size:22px;cursor:pointer}
+    .stats{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .stats b{color:var(--gold)}
+    .check{display:flex;align-items:flex-start;gap:10px;margin:20px 0;color:#ddd3f7;font-size:15px}
+    .check input{margin-top:5px;accent-color:var(--purple);width:18px;height:18px;flex-shrink:0}
+    .message{display:none;margin-top:14px;padding:13px;border-radius:10px;font-size:16px;white-space:pre-wrap;overflow-wrap:anywhere}
+    .message.show{display:block}
+    .message.ok{background:#12372b;border:1px solid var(--ok);color:#b9f5dd}
+    .message.error{background:#3d1524;border:1px solid var(--err);color:#ffc2cf}
+    .notice{background:#20143a;border:1px solid #63418a;border-radius:12px;padding:14px;color:#e5d8ff;font-size:15px}
+    footer{text-align:center;color:var(--muted);font-size:14px;padding:28px 16px 45px;border-top:1px solid var(--line);margin-top:30px}
+    .hidden{display:none!important}
+    @media(max-width:640px){.row,.row3{grid-template-columns:1fr}.hero{padding-top:16px}.btn{width:100%}.tools .btn{width:100%}.prize-image{height:180px}}
+  </style>
+</head>
+<body>
+  <header class="hero wrap">
+    <img class="logo" src="logo.png" alt="Indicação Premiada Evolua+ Profissões" onerror="this.style.display='none'">
+    <h1>INDIQUE E <span class="gold">CONCORRA!</span></h1>
+    <p>Indique pessoas para a <strong class="gold">Evolua+ Profissões</strong>. Cada lead único enviado conta como uma indicação. Confira os prêmios da campanha!</p>
+    <a class="btn" href="#participar">QUERO PARTICIPAR</a>
+  </header>
+
+  <main>
+    <section class="wrap" id="como">
+      <h2>COMO <span>FUNCIONA</span></h2>
+      <p class="sub">É simples participar.</p>
+      <div class="grid g3">
+        <article class="card"><div class="step-number">01</div><h3>Identifique-se</h3><p>Informe seu nome e WhatsApp para identificarmos suas indicações.</p></article>
+        <article class="card"><div class="step-number">02</div><h3>Indique</h3><p>Adicione os nomes e WhatsApps das pessoas que desejam conhecer nossos cursos.</p></article>
+        <article class="card"><div class="step-number">03</div><h3>Concorra</h3><p>As indicações únicas são registradas conforme as regras da campanha.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap" id="premios-section">
+      <h2>PRÊMIOS EM <span>JOGO</span></h2>
+      <p class="sub">Confira os prêmios disponíveis nesta campanha.</p>
+      <div id="premios" class="grid g3"><div class="empty">Carregando prêmios...</div></div>
+    </section>
+
+    <section class="wrap" id="participar">
+      <h2>FAÇA SUA <span>INDICAÇÃO</span></h2>
+      <p class="sub">Preencha seus dados e adicione um ou mais contatos.</p>
+      <div class="form-card">
+        <div class="row">
+          <div class="field"><label for="meuNome">Seu nome</label><input type="text" id="meuNome" maxlength="80" autocomplete="name" placeholder="Seu nome completo"></div>
+          <div class="field"><label for="meuZap">Seu WhatsApp</label><input type="tel" id="meuZap" maxlength="20" autocomplete="tel" placeholder="(65) 99999-9999"></div>
+        </div>
+        <div class="row3">
+          <div class="field"><label for="leadNome">Nome da pessoa indicada</label><input type="text" id="leadNome" maxlength="80" placeholder="Nome do contato"></div>
+          <div class="field"><label for="leadZap">WhatsApp da pessoa</label><input type="tel" id="leadZap" maxlength="20" placeholder="(65) 99999-9999"></div>
+          <button class="btn secondary" id="adicionar" type="button">+ ADICIONAR</button>
+        </div>
+        <div class="tools">
+          <button class="btn secondary" id="btnArquivo" type="button">IMPORTAR .VCF / .CSV</button>
+          <input type="file" id="arquivo" accept=".vcf,.csv,.txt" hidden>
+        </div>
+        <p class="hint">Você também pode adicionar contatos manualmente. Importe somente contatos que autorizaram o compartilhamento dos dados para receber informações da Evolua+ Profissões.</p>
+        <div class="stats"><span>Contatos na lista: <b id="quantidade">0</b></span><span>Novos contatos enviados: <b id="novos">0</b></span></div>
+        <div id="lista" class="list hidden"></div>
+        <label class="check"><input type="checkbox" id="aceite"><span>Confirmo que as pessoas indicadas autorizaram o compartilhamento de seus dados para contato sobre cursos da Evolua+ Profissões e aceito as regras da campanha.</span></label>
+        <button class="btn" id="enviar" type="button" disabled>ENVIAR INDICAÇÕES</button>
+        <div id="mensagem" class="message" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Evolua+ Profissões · Mirassol D'Oeste - MT<br>Campanha sujeita às regras oficiais e à legislação aplicável.</footer>
+
+  <script>
+    /*
+      CONFIGURAÇÃO:
+      A URL e a publishable key são públicas por natureza no navegador.
+      O banco deve continuar protegido por RLS e funções seguras.
+      Esta página chama a função registrar_indicacoes já criada no Supabase.
+    */
+    const SUPABASE_URL = "https://wkhxevsnualovqsfzbrm.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_0yYEWN1eZaKKOqhsTnKmyA_YT-l2Dea";
+    const TICKET_A_CADA = 10;
+
+    const $ = id => document.getElementById(id);
+    const contatos = [];
+    const digitos = v => (v || "").replace(/\D/g, "").replace(/^55(?=\d{10,11}$)/, "");
+    const telefoneValido = v => /^\d{10,11}$/.test(digitos(v));
+    const escapeHtml = v => String(v ?? "").replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[c]));
+
+    function aviso(texto, tipo = "error") {
+      const el = $("mensagem");
+      el.textContent = texto;
+      el.className = "message show " + tipo;
+    }
+
+    function limparAviso() {
+      $("mensagem").className = "message";
+      $("mensagem").textContent = "";
+    }
+
+    function atualizarLista() {
+      $("quantidade").textContent = contatos.length;
+      $("lista").classList.toggle("hidden", contatos.length === 0);
+      $("lista").replaceChildren();
+
+      contatos.forEach((c, i) => {
+        const linha = document.createElement("div");
+        linha.className = "list-row";
+        const texto = document.createElement("span");
+        texto.textContent = c.nome + " · " + c.zap;
+        const remover = document.createElement("button");
+        remover.className = "remove";
+        remover.type = "button";
+        remover.textContent = "×";
+        remover.setAttribute("aria-label", "Remover " + c.nome);
+        remover.onclick = () => { contatos.splice(i, 1); atualizarLista(); };
+        linha.append(texto, remover);
+        $("lista").append(linha);
+      });
+
+      $("enviar").disabled = !($("aceite").checked && contatos.length > 0);
+    }
+
+    async function carregarPremios() {
+      const area = $("premios");
+      try {
+        const response = await fetch(
+          SUPABASE_URL + "/rest/v1/premios?select=nome,descricao,imagem_url&ativo=eq.true&order=ordem.asc",
+          { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
+        );
+        if (!response.ok) throw new Error("Não foi possível consultar os prêmios.");
+        const premios = await response.json();
+        if (!premios.length) {
+          area.innerHTML = '<div class="empty">Os prêmios serão divulgados em breve.</div>';
+          return;
+        }
+        area.innerHTML = premios.map(p => `
+          <article class="card prize">
+            <div class="prize-image">${p.imagem_url ? `<img src="${escapeHtml(p.imagem_url)}" alt="${escapeHtml(p.nome)}" loading="lazy">` : '<span>🏆</span>'}</div>
+            <h3>${escapeHtml(p.nome)}</h3>
+            ${p.descricao ? `<p>${escapeHtml(p.descricao)}</p>` : ""}
+          </article>`).join("");
+      } catch (e) {
+        console.error(e);
+        area.innerHTML = '<div class="empty">Os prêmios serão divulgados em breve.</div>';
+      }
+    }
+
+    function adicionarLead(nomeBruto, zapBruto) {
+      const nome = String(nomeBruto || "").trim().slice(0, 80);
+      const zap = digitos(zapBruto);
+      const meuZap = digitos($("meuZap").value);
+
+      if (nome.length < 2) return "Informe o nome da pessoa indicada.";
+      if (!telefoneValido(zap)) return "Informe um WhatsApp válido com DDD.";
+      if (telefoneValido(meuZap) && zap === meuZap) return "Você não pode indicar seu próprio número.";
+      if (contatos.some(c => c.zap === zap)) return "Esse número já está na sua lista.";
+      contatos.push({ nome, zap });
+      return null;
+    }
+
+    $("adicionar").addEventListener("click", () => {
+      const erro = adicionarLead($("leadNome").value, $("leadZap").value);
+      if (erro) { aviso(erro); return; }
+      $("leadNome").value = "";
+      $("leadZap").value = "";
+      limparAviso();
+      atualizarLista();
+      $("leadNome").focus();
+    });
+
+    $("leadZap").addEventListener("keydown", e => { if (e.key === "Enter") $("adicionar").click(); });
+    $("aceite").addEventListener("change", atualizarLista);
+
+    $("btnArquivo").addEventListener("click", () => $("arquivo").click());
+    $("arquivo").addEventListener("change", async e => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        aviso("O arquivo deve ter no máximo 5 MB.");
+        e.target.value = "";
+        return;
+      }
+      const txt = await file.text();
+      let adicionados = 0;
+
+      if (/BEGIN:VCARD/i.test(txt)) {
+        txt.split(/BEGIN:VCARD/i).slice(1).forEach(card => {
+          const nome = (card.match(/^FN[^:]*:(.+)$/mi) || [])[1] || "";
+          const tel = (card.match(/^TEL[^:]*:(.+)$/mi) || [])[1] || "";
+          if (!adicionarLead(nome.trim(), tel.trim())) adicionados++;
+        });
+      } else {
+        txt.split(/\r?\n/).forEach(line => {
+          const cols = line.split(/[;,\t]/).map(s => s.replace(/^"|"$/g, "").trim());
+          const tel = cols.find(x => telefoneValido(x));
+          const nome = cols.find(x => x && x !== tel && /[A-Za-zÀ-ú]/.test(x));
+          if (tel && !adicionarLead(nome || "Sem nome", tel)) adicionados++;
+        });
+      }
+      atualizarLista();
+      aviso(adicionados ? `${adicionados} contato(s) importado(s). Confira a lista antes de enviar.` : "Nenhum contato novo válido encontrado no arquivo.", adicionados ? "ok" : "error");
+      e.target.value = "";
+    });
+
+    async function registrarIndicacoes(nome, zap, indicados) {
+      const response = await fetch(SUPABASE_URL + "/rest/v1/rpc/registrar_indicacoes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: "Bearer " + SUPABASE_KEY
+        },
+        body: JSON.stringify({ p_nome: nome, p_whatsapp: zap, p_indicados: indicados })
+      });
+      const text = await response.text();
+      if (!response.ok) {
+        let detail = text;
+        try { detail = JSON.parse(text).message || text; } catch {}
+        throw new Error(detail);
+      }
+      return text ? JSON.parse(text) : {};
+    }
+
+    $("enviar").addEventListener("click", async () => {
+      const nome = $("meuNome").value.trim();
+      const zap = digitos($("meuZap").value);
+
+      if (nome.length < 2) return aviso("Informe seu nome completo.");
+      if (!telefoneValido(zap)) return aviso("Informe seu WhatsApp com DDD.");
+      if (!contatos.length) return aviso("Adicione ao menos uma indicação.");
+      if (!$("aceite").checked) return aviso("Confirme a autorização e aceite as regras da campanha.");
+
+      if (contatos.some(c => c.zap === zap)) {
+        return aviso("Remova seu próprio número da lista de indicações.");
+      }
+
+      const botao = $("enviar");
+      botao.disabled = true;
+      botao.textContent = "ENVIANDO...";
+      try {
+        const resultado = await registrarIndicacoes(nome, zap, contatos.map(c => ({ nome: c.nome, zap: c.zap })));
+        const totalNovos = (resultado.novos || []).length;
+        const ignorados = Number(resultado.ignorados || 0);
+        const total = Number(resultado.total || 0);
+        const tickets = Number(resultado.tickets || 0);
+
+        $("novos").textContent = totalNovos;
+        contatos.splice(0, contatos.length);
+        $("aceite").checked = false;
+        atualizarLista();
+
+        let mensagem = `Envio concluído! ${totalNovos} nova(s) indicação(ões) registrada(s).`;
+        if (ignorados) mensagem += ` ${ignorados} contato(s) já estavam cadastrados ou eram inválidos e foram ignorados.`;
+        mensagem += ` Total de indicações atribuídas a este participante: ${total}.`;
+        mensagem += ` Tickets contabilizados conforme a regra atual: ${tickets}.`;
+        aviso(mensagem, "ok");
+      } catch (err) {
+        console.error(err);
+        aviso("Não foi possível enviar as indicações. Confira a conexão e as permissões do Supabase. Detalhe: " + err.message);
+      } finally {
+        botao.textContent = "ENVIAR INDICAÇÕES";
+        atualizarLista();
+      }
+    });
+
+    carregarPremios();
+    atualizarLista();
+  </script>
+</body>
+</html>
